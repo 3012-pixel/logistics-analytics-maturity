@@ -49,7 +49,7 @@ def cmd_assess(args: argparse.Namespace) -> int:
 
     if synthetic:
         print("NOTE: input is SYNTHETIC data.")
-    if fw.is_draft:
+    if fw.is_draft or fw.not_validated:
         print(f"NOTE: framework status '{fw.meta.get('status')}'. Thresholds and next steps are not validated.")
     print(f"\n{'Organisation':<18} {'Overall':<13} {'Start with':<34} Flags")
     for r in results:

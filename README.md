@@ -10,7 +10,7 @@ This tool turns that thesis's framework into a short self-assessment. It:
 - names the **binding constraint**, the weakest layer that caps overall readiness;
 - draws a radar chart and recommends next steps for each level.
 
-> ⚠️ **Status: draft framework, not validated.** The dimensions and questions come from the thesis instrument. The answer scoring, level thresholds and next steps are design choices I made when building this tool, pending my own review as the thesis author. The thesis was an exploratory pilot (n = 20) with no confirmatory test. All example data in this repository is **synthetic**: no thesis survey responses are used or included.
+> **Status: reviewed by me as the thesis author, not empirically validated.** The dimensions and questions come from my thesis instrument. The answer scoring, level thresholds and some next steps are design choices I added when building this tool; they have not been calibrated on real data, because the thesis was an exploratory pilot (n = 20) with no confirmatory test. All example data in this repository is **synthetic**: no thesis survey responses are used or included.
 
 ---
 
@@ -79,7 +79,7 @@ This firm bought predictive tooling (maturity: Predictive), but its decision-mak
 - Train specifically on forecast ranges and uncertainty, not only on single figures. *(from thesis)*
 - Practise reconciling contradictory figures: which source, which timestamp, which definition. *(from thesis)*
 
-Every recommendation is tagged *from thesis* or *draft* so you can see where it came from.
+Every recommendation is tagged *from thesis* or *author addition* so you can see where it came from.
 
 ## How to run
 
@@ -129,7 +129,7 @@ A dimension is reported as *insufficient data* if too few of its questions were 
 ## Project structure
 
 ```
-framework/lamf_framework.yaml   the framework (single source of truth, DRAFT)
+framework/lamf_framework.yaml   the framework (single source of truth, author-reviewed)
 src/lamf/
   framework.py    load + validate the YAML
   responses.py    read and code the CSV; template + codebook
@@ -145,7 +145,7 @@ data/             synthetic responses only
 
 ## Limitations
 
-- **Not validated.** The answer scores, thresholds and next steps are an unreviewed draft. Levels are cut-offs on a 1–5 mean, not empirically calibrated.
+- **Not validated.** The answer scores, thresholds and next steps are reviewed by me but not tested against data. Levels are cut-offs on a 1–5 mean, not empirically calibrated.
 - **Self-report.** Every input is a self-assessment. The thesis's central finding is that people can believe they understand a display when they don't, so treat the *Display interpretation* score as an upper bound.
 - **Small groups.** Organisation scores from 3–6 respondents are noisy; the report shows n and spread for each dimension.
 - **Scope.** The questions were designed for logistics SMEs facing autonomous last-mile and warehouse data. They are not a general digital-maturity index.

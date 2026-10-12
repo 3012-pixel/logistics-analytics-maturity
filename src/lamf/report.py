@@ -17,6 +17,9 @@ def banner(fw: Framework, synthetic: bool) -> str:
     if fw.is_draft:
         lines.append(f"> **DRAFT FRAMEWORK ({fw.meta.get('status', 'draft')}).** Scoring thresholds and next steps are "
                      "design choices derived from the source thesis and have not been empirically validated.")
+    elif fw.not_validated:
+        lines.append("> **Not empirically validated.** The framework is reviewed by the thesis author, but its "
+                     "level thresholds and next steps are design choices that have not been calibrated on real data.")
     return "\n>\n".join(lines)
 
 
@@ -50,7 +53,7 @@ def org_report(result: OrgResult, fw: Framework, radar_file: str, synthetic: boo
         tag = " **(binding constraint)**" if rec.binding else ""
         parts.append(f"### {rec.name}: {rec.current} → {rec.target}{tag}")
         for s in rec.steps:
-            parts.append(f"- {s.text} _({'from thesis' if s.source == 'thesis' else 'draft'})_")
+            parts.append(f"- {s.text} _({'from thesis' if s.source == 'thesis' else 'author addition'})_")
         parts.append("")
 
     parts += ["---", f"Framework: {fw.meta.get('name')} v{fw.meta.get('version')}. "

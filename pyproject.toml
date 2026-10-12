@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "lamf"
 version = "0.1.0"
-description = "Logistics Analytics Maturity Framework: questionnaire scoring, radar charts and next steps (draft framework derived from a master's thesis)."
+description = "Logistics Analytics Maturity Framework: questionnaire scoring, radar charts and next steps (framework derived from a master's thesis)."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

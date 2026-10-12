@@ -59,6 +59,8 @@ def radar(result: OrgResult, fw: Framework, path: str | Path) -> Path:
     caption = "Red circle = binding constraint (lowest level)"
     if fw.is_draft:
         caption += " | DRAFT framework, not validated"
+    elif fw.not_validated:
+        caption += " | Framework not empirically validated"
     fig.text(0.5, 0.02, caption, ha="center", fontsize=7, color="#555")
     fig.savefig(path, bbox_inches="tight")
     plt.close(fig)

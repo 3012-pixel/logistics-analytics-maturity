@@ -125,7 +125,8 @@ def test_cli_end_to_end(tmp_path, capsys) -> None:
     pngs = {p.name for p in out.glob("*.png")}
     assert "radar_comparison.png" in pngs and len(pngs) == 4
     report = (out / "report_3pl-growing.md").read_text(encoding="utf-8")
-    assert "SYNTHETIC DATA" in report and "DRAFT FRAMEWORK" in report and "Start with" in report
+    assert "SYNTHETIC DATA" in report and "Not empirically validated" in report and "Start with" in report
+    assert "DRAFT FRAMEWORK" not in report
 
 
 def test_cli_template_and_bad_input(tmp_path, capsys) -> None:

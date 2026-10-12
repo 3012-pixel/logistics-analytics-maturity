@@ -99,8 +99,13 @@ class Framework:
 
     @property
     def is_draft(self) -> bool:
-        """True while the framework is not author-approved or not validated."""
-        return str(self.meta.get("status", "")).startswith("draft") or bool(self.meta.get("not_validated"))
+        """True while the framework has not been reviewed by its author."""
+        return str(self.meta.get("status", "")).startswith("draft")
+
+    @property
+    def not_validated(self) -> bool:
+        """True until the thresholds have been calibrated on real data."""
+        return bool(self.meta.get("not_validated"))
 
     def level_for(self, score: float) -> Level:
         """Highest level whose ``min_score`` the score reaches."""
@@ -162,7 +167,7 @@ def load_framework(path: str | Path) -> Framework:
             flags={fid: FlagDef(fid, str(f["title"]), str(f.get("rule", "")), " ".join(str(f["message"]).split()),
                                 str(f.get("source", "")))
                    for fid, f in (raw.get("flags") or {}).items()},
-            next_steps={dim: {lvl: tuple(Step(str(s["text"]), str(s.get("source", "draft"))) for s in steps)
+            next_steps={dim: {lvl: tuple(Step(str(s["text"]), str(s.get("source", "author"))) for s in steps)
                               for lvl, steps in by_level.items()}
                         for dim, by_level in (raw.get("next_steps") or {}).items()},
         )

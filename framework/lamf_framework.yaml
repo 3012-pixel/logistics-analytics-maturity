@@ -1,19 +1,20 @@
 # Logistics Analytics Maturity Framework (LAMF)
 #
-# STATUS: DRAFT FOR AUTHOR REVIEW. Derived by the tool's author from the constructs and survey
-# instrument of: Aditya, K. (2026). Data-Driven Operations in German SMEs: Analytical Capability
+# STATUS: REVIEWED BY THE THESIS AUTHOR (not empirically validated). Derived from the constructs
+# and survey instrument of: Aditya, K. (2026). Data-Driven Operations in German SMEs: Analytical Capability
 # Maturity and Human Factors in Value Chain Decision-Making. Master's thesis, SRH University Berlin.
 #
 # The thesis was an exploratory pilot (n = 20). Its instrument is reused here, but the
 # answer-option scores, level thresholds and next steps below are DESIGN CHOICES that have
-# not been empirically validated. Entries marked `source: draft` are not from the thesis.
+# not been empirically validated. Entries marked `source: author` were added by the author
+# beyond what the thesis states.
 #
 # Everything the tool does is driven by this file: edit it, re-run `lamf assess`.
 
 meta:
   name: Logistics Analytics Maturity Framework
-  version: 0.1.0-draft
-  status: draft-for-author-review
+  version: 0.1.0
+  status: author-reviewed
   not_validated: true
   citation: >-
     Aditya, K. (2026). Data-Driven Operations in German SMEs: Analytical Capability Maturity and
@@ -39,7 +40,7 @@ dimensions:
       - id: q24
         text: "Which best describes how data is used in your organisation?"
         type: choice
-        source: thesis (Appendix I, item 24); option wording partly draft
+        source: thesis (Appendix I, item 24); option wording completed by the author
         options:   # stage 1-4 mapped onto the 1-5 score scale at the level floors
           descriptive:  {label: "We mainly record what happened (past figures)", score: 1.0}
           diagnostic:   {label: "We also look into why things happened", score: 2.0}
@@ -55,7 +56,7 @@ dimensions:
       - id: q22
         text: "When something goes wrong in day-to-day operations, how is the response usually decided?"
         type: choice
-        source: thesis (Appendix I, item 22); option wording partly draft
+        source: thesis (Appendix I, item 22); option wording completed by the author
         options:
           varies:      {label: "It varies completely from case to case", score: 1.0}
           ask_around:  {label: "We ask around until someone knows what to do", score: 2.0}
@@ -64,7 +65,7 @@ dimensions:
       - id: q23
         text: "Which of the following are in place in your organisation? (select all that apply)"
         type: multi
-        source: thesis (Appendix I, item 23); option list draft
+        source: thesis (Appendix I, item 23); option list defined by the author
         score_rule: count   # score = 1 + 4 * (selected / number of options)
         options:
           review_meeting: {label: "A recurring meeting where operational figures are reviewed"}
@@ -75,7 +76,7 @@ dimensions:
       - id: q31
         text: "When people disagree about what to do, what usually settles it?"
         type: choice
-        source: thesis (Appendix I, item 31); option wording draft
+        source: thesis (Appendix I, item 31); option wording defined by the author
         options:
           seniority:   {label: "The most senior person decides", score: 1.0}
           persuasion:  {label: "Whoever argues most convincingly", score: 2.0}
@@ -182,33 +183,33 @@ flags:
 next_steps:
   maturity:
     Descriptive:
-      - {text: "Add a weekly 'why' review of the 3 worst KPIs (e.g. late routes by depot) with a root-cause note.", source: draft}
-      - {text: "Standardise exception codes so causes can be counted, not just described.", source: draft}
+      - {text: "Add a weekly 'why' review of the 3 worst KPIs (e.g. late routes by depot) with a root-cause note.", source: author}
+      - {text: "Standardise exception codes so causes can be counted, not just described.", source: author}
     Diagnostic:
-      - {text: "Pilot one forecast where a decision depends on it (e.g. next-week order volume for shift planning) and track its accuracy.", source: draft}
+      - {text: "Pilot one forecast where a decision depends on it (e.g. next-week order volume for shift planning) and track its accuracy.", source: author}
       - {text: "Check data literacy before buying predictive or autonomous tools, not after.", source: thesis}
     Predictive:
-      - {text: "Turn one stable forecast into a recommendation rule (e.g. reorder point, staffing level) with a human sign-off step.", source: draft}
+      - {text: "Turn one stable forecast into a recommendation rule (e.g. reorder point, staffing level) with a human sign-off step.", source: author}
       - {text: "Require that every system recommendation shows what triggered it, what was weighed, and its confidence.", source: thesis}
     Prescriptive:
-      - {text: "Audit automated decisions monthly: override rate, outcomes, and drift in the data behind them.", source: draft}
+      - {text: "Audit automated decisions monthly: override rate, outcomes, and drift in the data behind them.", source: author}
       - {text: "Document what each system optimises for, so managers can justify its actions (trust in intent, not only competence).", source: thesis}
   routines:
     Descriptive:
-      - {text: "Introduce a short recurring meeting where operational figures are reviewed and actions are recorded.", source: draft}
-      - {text: "Write down the response to the 3 most common exceptions so it no longer varies by person.", source: draft}
+      - {text: "Introduce a short recurring meeting where operational figures are reviewed and actions are recorded.", source: author}
+      - {text: "Write down the response to the 3 most common exceptions so it no longer varies by person.", source: author}
     Diagnostic:
-      - {text: "Define numeric thresholds that trigger a named action (e.g. on-time rate below 90% → depot review).", source: draft}
-      - {text: "Hold blameless post-incident reviews for significant failures.", source: draft}
+      - {text: "Define numeric thresholds that trigger a named action (e.g. on-time rate below 90% → depot review).", source: author}
+      - {text: "Hold blameless post-incident reviews for significant failures.", source: author}
     Predictive:
-      - {text: "Settle recurring disagreements with small trials or pilots instead of seniority or persuasion.", source: draft}
+      - {text: "Settle recurring disagreements with small trials or pilots instead of seniority or persuasion.", source: author}
       - {text: "Assign a deputy for each key analytical role so routines survive absence (dynamic, not just ordinary, capability).", source: thesis}
     Prescriptive:
-      - {text: "Review the decision procedures yearly and retire thresholds that no longer predict problems.", source: draft}
+      - {text: "Review the decision procedures yearly and retire thresholds that no longer predict problems.", source: author}
   literacy:
     Descriptive:
       - {text: "Run short, task-based training on the chart types your systems actually produce (trends, ranges, maps).", source: thesis}
-      - {text: "Pair each operations manager with an analyst for their first month of dashboard use.", source: draft}
+      - {text: "Pair each operations manager with an analyst for their first month of dashboard use.", source: author}
     Diagnostic:
       - {text: "Train specifically on forecast ranges and uncertainty, not only on single figures.", source: thesis}
       - {text: "Practise reconciling contradictory figures: which source, which time stamp, which definition.", source: thesis}
@@ -216,36 +217,36 @@ next_steps:
       - {text: "Test literacy with observed tasks on a realistic live display before procurement decisions.", source: thesis}
       - {text: "Spread analytical capability beyond one or two people to reduce key-person risk.", source: thesis}
     Prescriptive:
-      - {text: "Keep literacy current as displays change: brief refreshers whenever a new view or alert type ships.", source: draft}
+      - {text: "Keep literacy current as displays change: brief refreshers whenever a new view or alert type ships.", source: author}
   culture:
     Descriptive:
-      - {text: "Make 'show me the data' the default response when a figure is questioned, starting with leadership.", source: draft}
+      - {text: "Make 'show me the data' the default response when a figure is questioned, starting with leadership.", source: author}
       - {text: "Separate learning from blame in incident discussions.", source: thesis}
     Diagnostic:
-      - {text: "Share operational dashboards across departments by default.", source: draft}
+      - {text: "Share operational dashboards across departments by default.", source: author}
       - {text: "Create explicit room for small experiments that may fail.", source: thesis}
     Predictive:
       - {text: "Reduce decisions taken by seniority alone: require the data view in decision notes.", source: thesis}
     Prescriptive:
-      - {text: "Protect the culture as automation grows: keep humans able to challenge system outputs openly.", source: draft}
+      - {text: "Protect the culture as automation grows: keep humans able to challenge system outputs openly.", source: author}
   autonomy:
     Descriptive:
-      - {text: "Start with recommendations that people review, never with autonomous exception handling.", source: draft}
+      - {text: "Start with recommendations that people review, never with autonomous exception handling.", source: author}
       - {text: "Show the reasoning behind each recommendation to build calibrated trust.", source: thesis}
     Diagnostic:
-      - {text: "Let the system act autonomously only in narrowly defined routine cases, with easy override.", source: draft}
-      - {text: "Track when people override and why, to find where trust is missing or misplaced.", source: draft}
+      - {text: "Let the system act autonomously only in narrowly defined routine cases, with easy override.", source: author}
+      - {text: "Track when people override and why, to find where trust is missing or misplaced.", source: author}
     Predictive:
       - {text: "Define accountability: who is responsible when an automated recommendation is followed and goes wrong.", source: thesis}
     Prescriptive:
-      - {text: "Guard against over-reliance: periodically check decisions people accepted without review.", source: draft}
+      - {text: "Guard against over-reliance: periodically check decisions people accepted without review.", source: author}
   interpretation:
     Descriptive:
-      - {text: "Simplify the main operational view: fewer simultaneous panels, clear priority of alerts.", source: draft}
+      - {text: "Simplify the main operational view: fewer simultaneous panels, clear priority of alerts.", source: author}
       - {text: "Fix unfamiliar terms and unexplained symbols first; these were the main reported causes of difficulty.", source: thesis}
     Diagnostic:
       - {text: "Add explanations to alerts (cause, evidence, confidence) rather than only redesigning visuals.", source: thesis}
     Predictive:
       - {text: "Validate with an observed task: can users identify the critical alert, and how fast?", source: thesis}
     Prescriptive:
-      - {text: "Monitor alert load and interpretation errors as the fleet or data volume grows.", source: draft}
+      - {text: "Monitor alert load and interpretation errors as the fleet or data volume grows.", source: author}

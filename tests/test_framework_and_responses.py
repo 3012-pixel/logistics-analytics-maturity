@@ -11,10 +11,11 @@ from lamf.responses import ResponseError, code_item, load_responses, write_templ
 from tests.conftest import FRAMEWORK, make_csv, respondent
 
 
-def test_bundled_framework_loads_as_draft(fw) -> None:
+def test_bundled_framework_reviewed_but_not_validated(fw) -> None:
     assert [l.name for l in fw.levels] == ["Descriptive", "Diagnostic", "Predictive", "Prescriptive"]
     assert len(fw.dimensions) == 6
-    assert fw.is_draft
+    assert not fw.is_draft and fw.not_validated
+    assert fw.meta["status"] == "author-reviewed"
     assert "Aditya" in fw.meta["citation"]
 
 
