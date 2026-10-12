@@ -84,7 +84,7 @@ Every recommendation is tagged *from thesis* or *draft* so you can see where it 
 ## How to run
 
 ```bash
-git clone https://github.com/<your-username>/logistics-analytics-maturity.git
+git clone https://github.com/3012-pixel/logistics-analytics-maturity.git
 cd logistics-analytics-maturity
 python -m venv .venv
 .venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
