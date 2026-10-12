@@ -1,0 +1,251 @@
+# Logistics Analytics Maturity Framework (LAMF)
+#
+# STATUS: DRAFT FOR AUTHOR REVIEW. Derived by the tool's author from the constructs and survey
+# instrument of: Aditya, K. (2026). Data-Driven Operations in German SMEs: Analytical Capability
+# Maturity and Human Factors in Value Chain Decision-Making. Master's thesis, SRH University Berlin.
+#
+# The thesis was an exploratory pilot (n = 20). Its instrument is reused here, but the
+# answer-option scores, level thresholds and next steps below are DESIGN CHOICES that have
+# not been empirically validated. Entries marked `source: draft` are not from the thesis.
+#
+# Everything the tool does is driven by this file: edit it, re-run `lamf assess`.
+
+meta:
+  name: Logistics Analytics Maturity Framework
+  version: 0.1.0-draft
+  status: draft-for-author-review
+  not_validated: true
+  citation: >-
+    Aditya, K. (2026). Data-Driven Operations in German SMEs: Analytical Capability Maturity and
+    Human Factors in Value Chain Decision-Making. Master's thesis, SRH University Berlin.
+
+# The thesis's four analytics output stages. A 1-5 dimension score maps to a level via `min_score`.
+levels:
+  - {id: 1, name: Descriptive,  min_score: 1.0, summary: "Data records what happened."}
+  - {id: 2, name: Diagnostic,   min_score: 2.0, summary: "Data is used to understand why it happened."}
+  - {id: 3, name: Predictive,   min_score: 3.0, summary: "Data is used to anticipate what will happen."}
+  - {id: 4, name: Prescriptive, min_score: 4.0, summary: "Data and systems recommend or take the action."}
+
+likert:  # Q-level agreement scale used throughout the thesis instrument
+  labels: {SD: 1, D: 2, N: 3, A: 4, SA: 5}
+
+dimensions:
+  - id: maturity
+    name: Analytics maturity
+    construct: "Analytics maturity stage (Davenport & Harris 2007; descriptive-to-prescriptive output stages)"
+    unit: firm
+    min_items: 1
+    items:
+      - id: q24
+        text: "Which best describes how data is used in your organisation?"
+        type: choice
+        source: thesis (Appendix I, item 24); option wording partly draft
+        options:   # stage 1-4 mapped onto the 1-5 score scale at the level floors
+          descriptive:  {label: "We mainly record what happened (past figures)", score: 1.0}
+          diagnostic:   {label: "We also look into why things happened", score: 2.0}
+          predictive:   {label: "We also use data to estimate what is likely to happen next", score: 3.0}
+          prescriptive: {label: "Systems also recommend or automatically take actions based on data", score: 4.0}
+
+  - id: routines
+    name: Decision routines
+    construct: "Dynamic vs ordinary capabilities (Teece et al. 1997; Teece 2014)"
+    unit: firm
+    min_items: 2
+    items:
+      - id: q22
+        text: "When something goes wrong in day-to-day operations, how is the response usually decided?"
+        type: choice
+        source: thesis (Appendix I, item 22); option wording partly draft
+        options:
+          varies:      {label: "It varies completely from case to case", score: 1.0}
+          ask_around:  {label: "We ask around until someone knows what to do", score: 2.0}
+          look_data:   {label: "We look at the relevant data before deciding", score: 4.0}
+          procedure:   {label: "We follow a defined procedure with data-based triggers", score: 5.0}
+      - id: q23
+        text: "Which of the following are in place in your organisation? (select all that apply)"
+        type: multi
+        source: thesis (Appendix I, item 23); option list draft
+        score_rule: count   # score = 1 + 4 * (selected / number of options)
+        options:
+          review_meeting: {label: "A recurring meeting where operational figures are reviewed"}
+          thresholds:     {label: "Defined thresholds that trigger action"}
+          dashboard:      {label: "A shared KPI dashboard used by operations"}
+          procedures:     {label: "Documented procedures for common exceptions"}
+          post_incident:  {label: "Post-incident reviews of what went wrong"}
+      - id: q31
+        text: "When people disagree about what to do, what usually settles it?"
+        type: choice
+        source: thesis (Appendix I, item 31); option wording draft
+        options:
+          seniority:   {label: "The most senior person decides", score: 1.0}
+          persuasion:  {label: "Whoever argues most convincingly", score: 2.0}
+          data:        {label: "We look at the data together", score: 4.0}
+          test:        {label: "We test it (trial, pilot or A/B comparison)", score: 5.0}
+
+  - id: literacy
+    name: Data literacy
+    construct: "Managerial data literacy (Sloan 2023; Sajoodi et al. 2025)"
+    unit: person
+    min_items: 3
+    items:
+      - {id: q18, type: likert, source: thesis, text: "If a line on a chart rises or falls over time, I can tell when something unusual has happened."}
+      - {id: q19, type: likert, source: thesis, text: "When a forecast shows a range rather than a single figure, I understand what that range means."}
+      - {id: q20, type: likert, source: thesis, text: "I can read a map that uses colour to show how much of something is present in each area."}
+      - {id: q21, type: likert, source: thesis, text: "If two figures on a display appear to contradict one another, I would know how to establish which to trust."}
+
+  - id: culture
+    name: Data culture
+    construct: "Organisational culture (Eisenhardt & Martin 2000)"
+    unit: firm
+    min_items: 4
+    items:
+      - {id: q26, type: likert, source: thesis, text: "People here are willing to try a new way of working even if it might not succeed."}
+      - {id: q27, type: likert, source: thesis, text: "When someone questions a figure, we check the data rather than debate opinions."}
+      - {id: q28, type: likert, source: thesis, text: "If a decision based on data turns out badly, the focus is on what went wrong rather than who to blame."}
+      - {id: q29, type: likert, source: thesis, text: "Information is shared openly between departments here."}
+      - {id: q30, type: likert, source: thesis, reverse: true, text: "Decisions here are usually taken by the most senior person present, whatever the data is."}
+
+  - id: autonomy
+    name: Trust & autonomy readiness
+    construct: "Trust in automation and explainability (Lee & See 2004)"
+    unit: person
+    min_items: 2
+    items:
+      - {id: q32, type: likert, source: thesis, text: "I am comfortable acting on a recommendation generated automatically."}
+      - {id: q33, type: likert, source: thesis, text: "In a routine situation, I would rely on a recommendation generated by an autonomous system."}
+      - {id: q34, type: likert, source: thesis, text: "I would allow such a system to resolve exceptions without requiring human confirmation."}
+
+  - id: interpretation
+    name: Display interpretation
+    construct: "Cognitive load and dashboard design (Wickens et al. 2015; Stanton et al. 2013)"
+    unit: person
+    min_items: 2
+    self_report_caveat: true
+    items:
+      - id: q10
+        text: "Thinking of the most complex live dashboard you use: how completely can you determine the current status of the operation from it?"
+        type: choice
+        source: thesis (Appendix I, item 10, adapted to the respondent's own dashboard)
+        options:
+          first_glance:  {label: "Fully, at first glance", score: 5.0}
+          after_study:   {label: "Fully, but only after studying it", score: 4.0}
+          partially:     {label: "Partially", score: 2.0}
+          not_at_all:    {label: "Not at all", score: 1.0}
+      - {id: q13, type: likert, source: "thesis (item 13, adapted)", text: "I would feel confident acting on that dashboard without seeking further information."}
+      - {id: q14, type: likert, source: "thesis (item 14, adapted)", reverse: true, text: "Interpreting that dashboard requires a high degree of mental effort."}
+
+# Items asked but not scored into a dimension: they drive diagnostic flags.
+context_items:
+  - {id: q35, type: likert, source: thesis, text: "I would be held personally accountable if a decision I took on the basis of system data proved wrong."}
+  - {id: q36, type: likert, source: thesis, text: "A wrong decision taken on the basis of system data could expose my organisation to legal or financial consequences."}
+  - {id: q37, type: likert, source: thesis, text: "I would want to see how the system reached its conclusion before acting on it."}
+
+flags:
+  firm_ahead_of_people:
+    title: "Firm ahead of its people"
+    rule: "level(maturity) > level(literacy)"
+    message: >-
+      The organisation's analytics stage is above its decision-makers' data literacy. Effective
+      maturity rests on a few people; if they leave or are out of their depth, it falls overnight.
+    source: thesis (section 2.8)
+  explainability_demand:
+    title: "Explainability required"
+    rule: "mean(q37) >= 4"
+    message: >-
+      Decision-makers want to see how a system reached its conclusion before acting. Make it a
+      procurement requirement: every alert states what fired it, what was weighed, and how confident it is.
+    source: thesis (Finding 4; implications for vendors)
+  accountability_exposure:
+    title: "Accountability exposure"
+    rule: "mean(q35) >= 4 and mean(q36) >= 4"
+    message: >-
+      People expect to be held accountable and see legal or financial exposure. Define a
+      human-in-the-loop and escalation policy before increasing system autonomy.
+    source: thesis (Finding 4)
+  contradicting_figures_gap:
+    title: "Weak at adjudicating conflicting data"
+    rule: "mean(q21) <= mean(q18, q19, q20) - 1"
+    message: >-
+      Respondents are clearly weaker at deciding which of two conflicting figures to trust than at
+      reading single representations, and that is exactly the situation an autonomous fleet display creates.
+    source: thesis (Finding 3)
+  self_report:
+    title: "Self-reported comprehension"
+    rule: "always"
+    message: >-
+      Display interpretation is self-reported. The thesis found comprehension can fall while
+      perceived effort barely changes, so treat this score as optimistic and verify with an observed task.
+    source: thesis (Finding 1)
+
+# Next steps per dimension and CURRENT level: what to do to reach the next level.
+# At Prescriptive the steps are about sustaining and governing the capability.
+next_steps:
+  maturity:
+    Descriptive:
+      - {text: "Add a weekly 'why' review of the 3 worst KPIs (e.g. late routes by depot) with a root-cause note.", source: draft}
+      - {text: "Standardise exception codes so causes can be counted, not just described.", source: draft}
+    Diagnostic:
+      - {text: "Pilot one forecast where a decision depends on it (e.g. next-week order volume for shift planning) and track its accuracy.", source: draft}
+      - {text: "Check data literacy before buying predictive or autonomous tools, not after.", source: thesis}
+    Predictive:
+      - {text: "Turn one stable forecast into a recommendation rule (e.g. reorder point, staffing level) with a human sign-off step.", source: draft}
+      - {text: "Require that every system recommendation shows what triggered it, what was weighed, and its confidence.", source: thesis}
+    Prescriptive:
+      - {text: "Audit automated decisions monthly: override rate, outcomes, and drift in the data behind them.", source: draft}
+      - {text: "Document what each system optimises for, so managers can justify its actions (trust in intent, not only competence).", source: thesis}
+  routines:
+    Descriptive:
+      - {text: "Introduce a short recurring meeting where operational figures are reviewed and actions are recorded.", source: draft}
+      - {text: "Write down the response to the 3 most common exceptions so it no longer varies by person.", source: draft}
+    Diagnostic:
+      - {text: "Define numeric thresholds that trigger a named action (e.g. on-time rate below 90% → depot review).", source: draft}
+      - {text: "Hold blameless post-incident reviews for significant failures.", source: draft}
+    Predictive:
+      - {text: "Settle recurring disagreements with small trials or pilots instead of seniority or persuasion.", source: draft}
+      - {text: "Assign a deputy for each key analytical role so routines survive absence (dynamic, not just ordinary, capability).", source: thesis}
+    Prescriptive:
+      - {text: "Review the decision procedures yearly and retire thresholds that no longer predict problems.", source: draft}
+  literacy:
+    Descriptive:
+      - {text: "Run short, task-based training on the chart types your systems actually produce (trends, ranges, maps).", source: thesis}
+      - {text: "Pair each operations manager with an analyst for their first month of dashboard use.", source: draft}
+    Diagnostic:
+      - {text: "Train specifically on forecast ranges and uncertainty, not only on single figures.", source: thesis}
+      - {text: "Practise reconciling contradictory figures: which source, which time stamp, which definition.", source: thesis}
+    Predictive:
+      - {text: "Test literacy with observed tasks on a realistic live display before procurement decisions.", source: thesis}
+      - {text: "Spread analytical capability beyond one or two people to reduce key-person risk.", source: thesis}
+    Prescriptive:
+      - {text: "Keep literacy current as displays change: brief refreshers whenever a new view or alert type ships.", source: draft}
+  culture:
+    Descriptive:
+      - {text: "Make 'show me the data' the default response when a figure is questioned, starting with leadership.", source: draft}
+      - {text: "Separate learning from blame in incident discussions.", source: thesis}
+    Diagnostic:
+      - {text: "Share operational dashboards across departments by default.", source: draft}
+      - {text: "Create explicit room for small experiments that may fail.", source: thesis}
+    Predictive:
+      - {text: "Reduce decisions taken by seniority alone: require the data view in decision notes.", source: thesis}
+    Prescriptive:
+      - {text: "Protect the culture as automation grows: keep humans able to challenge system outputs openly.", source: draft}
+  autonomy:
+    Descriptive:
+      - {text: "Start with recommendations that people review, never with autonomous exception handling.", source: draft}
+      - {text: "Show the reasoning behind each recommendation to build calibrated trust.", source: thesis}
+    Diagnostic:
+      - {text: "Let the system act autonomously only in narrowly defined routine cases, with easy override.", source: draft}
+      - {text: "Track when people override and why, to find where trust is missing or misplaced.", source: draft}
+    Predictive:
+      - {text: "Define accountability: who is responsible when an automated recommendation is followed and goes wrong.", source: thesis}
+    Prescriptive:
+      - {text: "Guard against over-reliance: periodically check decisions people accepted without review.", source: draft}
+  interpretation:
+    Descriptive:
+      - {text: "Simplify the main operational view: fewer simultaneous panels, clear priority of alerts.", source: draft}
+      - {text: "Fix unfamiliar terms and unexplained symbols first; these were the main reported causes of difficulty.", source: thesis}
+    Diagnostic:
+      - {text: "Add explanations to alerts (cause, evidence, confidence) rather than only redesigning visuals.", source: thesis}
+    Predictive:
+      - {text: "Validate with an observed task: can users identify the critical alert, and how fast?", source: thesis}
+    Prescriptive:
+      - {text: "Monitor alert load and interpretation errors as the fleet or data volume grows.", source: draft}

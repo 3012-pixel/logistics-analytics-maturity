@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lamf"
+version = "0.1.0"
+description = "Logistics Analytics Maturity Framework: questionnaire scoring, radar charts and next steps (draft framework derived from a master's thesis)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.26", "pandas>=2.2", "matplotlib>=3.8", "PyYAML>=6.0", "python-dotenv>=1.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+lamf = "lamf.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
