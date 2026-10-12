@@ -84,7 +84,7 @@ Every recommendation is tagged *from thesis* or *author addition* so you can see
 ## How to run
 
 ```bash
-git clone https://github.com/3012-pixel/logistics-analytics-maturity.git
+git clone https://github.com/kumar-aditya-data/logistics-analytics-maturity.git
 cd logistics-analytics-maturity
 python -m venv .venv
 .venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
